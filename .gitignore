@@ -216,3 +216,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Node / Typescript / Vite
+node_modules_
+dist/
+.vite/
+*.tsbuildinfo
+
+# Data
+*.txt.zip
+data/raw/
+*.vcf
+*.gvcf
