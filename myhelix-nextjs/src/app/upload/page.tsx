@@ -34,7 +34,7 @@ export default function UploadPage() {
         const { error: dbError } = await supabase.from('uploads').insert({
             user_id: user.id,
             file_name: file.name,
-            file_path: filePath,
+            storage_path: filePath,
             status: 'pending'
         })
 
