@@ -2,16 +2,15 @@
 
 import { useState } from 'react'
 import {createClient} from '@/lib/supabase/client'
-import { useRef } from "react"
 
 export default function UploadPage() {
     const [status, setStatus] = useState<string>('')
-    const supabase = createClient()
 
     async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0]
         if (!file) return
 
+        const supabase = createClient()
         setStatus('Uploading...')
 
         const { data: { user } } = await supabase.auth.getUser()
@@ -20,14 +19,14 @@ export default function UploadPage() {
             return
         }
 
-        const filePath = '${user.id}/${Date.now()}_${file.name}'
+        const filePath = `${user.id}/${Date.now()}_${file.name}`
 
         const { error: uploadError } = await supabase.storage
         .from('genetic-uploads')
         .upload(filePath, file)
 
         if (uploadError) {
-            setStatus('Upload failed: ${uploadError.message}')
+            setStatus(`Upload failed: ${uploadError.message}`)
             return
         }
 
@@ -39,7 +38,7 @@ export default function UploadPage() {
         })
 
         if (dbError){
-            setStatus('Saved file but failed to save metadata ${dbError.message}')
+            setStatus(`Saved file but failed to save metadata: ${dbError.message}`)
             return
         }
 
