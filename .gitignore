@@ -228,3 +228,6 @@ dist/
 data/raw/
 *.vcf
 *.gvcf
+
+# dbSNP reference data
+backend/data/dbsnp/*.bz2
