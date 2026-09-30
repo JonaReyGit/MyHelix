@@ -20,10 +20,10 @@ class AncestryDNAParser:
             if not line.strip() or line.startswith("#"):
                 continue
             fields = line.split("\t")
-            if len(fields != 5):
+            if len(fields) != 5:
                 raise(IngestError(f"Line {line_no}: expected 5 tab-separated columns, got {len(fields)}"))
             rsid, chromosome, position, allele1, allele2 = (f.strip() for f in fields)
-            genotype = allele1.join(allele2)
+            genotype = allele1 + allele2
             if not position.isdigit():
                 raise IngestError(f"Line {line_no}: position '{position}' is not a number")
             records.append(
@@ -35,4 +35,4 @@ class AncestryDNAParser:
                     vendor=self.vendor,
                 )
             )
-            return records
+        return records
