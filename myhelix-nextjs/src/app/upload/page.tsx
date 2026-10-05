@@ -49,7 +49,7 @@ export default function UploadPage() {
     
     return (
 
-        <div className="min-h-screen flex items-center justify-center p-6">
+        <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6">
             <label className="w-full max-w-md flex flex-col items-center justify-center gap-2 p-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
                 <span className="text-lg font-bold text-gray-600">
                 Click to upload your genetic data file
@@ -62,6 +62,7 @@ export default function UploadPage() {
                 className="hidden"
                 />
             </label>
+            {status && <p className="text-sm text-gray-600">{status}</p>}
         </div>
     )
 }

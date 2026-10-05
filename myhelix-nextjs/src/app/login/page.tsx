@@ -12,12 +12,15 @@ export default function LoginPage() {
     const supabase = createClient()
     setStatus('Working...')
 
-    const { error } =
+    const { data, error } =
       mode === 'signin'
         ? await supabase.auth.signInWithPassword({ email, password })
         : await supabase.auth.signUp({ email, password })
 
-    setStatus(error ? error.message : 'Signed in - go to /upload')
+    if (error) setStatus(error.message)
+    // signUp returns no session until the email is confirmed
+    else if (!data.session) setStatus('Check your email to confirm your account, then sign in')
+    else setStatus(`Signed in as ${data.session.user.email} - go to /upload`)
   }
 
   return (
