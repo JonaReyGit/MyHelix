@@ -231,3 +231,7 @@ data/raw/
 
 # dbSNP reference data
 backend/data/dbsnp/*.bz2
+
+# env files
+.env
+.env*.local
