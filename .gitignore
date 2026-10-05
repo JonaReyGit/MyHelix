@@ -14,8 +14,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+/lib/
+/lib64/
 parts/
 sdist/
 var/
@@ -228,3 +228,10 @@ dist/
 data/raw/
 *.vcf
 *.gvcf
+
+# dbSNP reference data
+backend/data/dbsnp/*.bz2
+
+# env files
+.env
+.env*.local
