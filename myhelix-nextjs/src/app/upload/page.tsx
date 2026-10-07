@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import LogoutButton from "@/components/LogoutButton";
 
 export default function UploadPage() {
   const [status, setStatus] = useState<string>("");
@@ -48,20 +49,30 @@ export default function UploadPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6">
-      <label className="w-full max-w-md flex flex-col items-center justify-center gap-2 p-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
-        <span className="text-lg font-bold text-gray-600">
-          Click to upload your genetic data file
-        </span>
-        <span className="text-xs text-gray-400">.txt, .csv, or .zip</span>
-        <input
-          type="file"
-          accept=".txt, .csv, .zip "
-          onChange={handleUpload}
-          className="hidden"
-        />
-      </label>
-      {status && <p className="text-sm text-gray-600">{status}</p>}
+    <div className="min-h-screen">
+      <header className="flex items-center justify-between border-b px-6 py-4">
+        <h1 className="text-xl font-bold">MyHelix</h1>
+        <LogoutButton />
+      </header>
+
+      <main className="flex min-h-[calc(100vh-73px)] flex-col items-center justify-center gap-4 p-6">
+        <label className="flex w-full max-w-md cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 p-8 transition-colors hover:border-blue-400 hover:bg-blue-50">
+          <span className="text-lg font-bold text-gray-600">
+            Click to upload your genetic data file
+          </span>
+
+          <span className="text-xs text-gray-400">.txt, .csv, or .zip</span>
+
+          <input
+            type="file"
+            accept=".txt,.csv,.zip"
+            onChange={handleUpload}
+            className="hidden"
+          />
+        </label>
+
+        {status && <p className="text-sm text-gray-600">{status}</p>}
+      </main>
     </div>
   );
 }
