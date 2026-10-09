@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import LogoutButton from "@/components/LogoutButton";
+import Link from "next/dist/client/link";
 
 export default function UploadPage() {
   const [status, setStatus] = useState<string>("");
@@ -51,7 +52,9 @@ export default function UploadPage() {
   return (
     <div className="min-h-screen">
       <header className="flex items-center justify-between border-b px-6 py-4">
-        <h1 className="text-xl font-bold">MyHelix</h1>
+        <Link href="/" className="text-xl font-bold">
+          MyHelix
+        </Link>
         <LogoutButton />
       </header>
 
