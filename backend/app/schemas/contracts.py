@@ -35,6 +35,7 @@ class RawSNPRecord(_Frozen):
     chromosome: str
     position: int
     genotype: str
+    is_indel: bool
     vendor: Vendor
 
 
