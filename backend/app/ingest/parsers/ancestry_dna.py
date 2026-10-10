@@ -24,7 +24,7 @@ class AncestryDNAParser:
             if len(fields) != 5:
                 raise(IngestError(f"Line {line_no}: expected 5 tab-separated columns, got {len(fields)}"))
             rsid, chromosome, position, allele1, allele2 = (f.strip() for f in fields)
-            if allele1 in ["D", "I"] or allele2 in ["D", "I"]:
+            if allele1 in ["D", "I", "-"] or allele2 in ["D", "I", "-"]:
                 is_indel = True
             genotype = allele1 + allele2
             if not position.isdigit():
